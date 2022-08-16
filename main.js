@@ -1,6 +1,17 @@
 (function() {
     function createPairGame(container) {
 
+        const shuffle = (arr) => {
+            let j, temp;
+            for (let i = arr.length - 1; i > 0; i--) {
+                j = Math.floor(Math.random()*(i + 1));
+                temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+            }
+	        return arr;
+        }
+
         let openedCards = {
             firstOpened: null,
             secondOpened: null,
@@ -53,7 +64,7 @@
             return row;
         };
 
-        const numbers = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
+        const numbers = shuffle([1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8]);
         let shift = 0;
         for (let i = 0; i < 4; i++) {
             let row = createRow();
