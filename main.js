@@ -12,50 +12,48 @@
 	        return arr;
         }
 
-        let openedCards = {
-            firstOpened: null,
-            secondOpened: null,
-        }
+        let firstOpened = null;
+        let isClickDisabled = false;
 
         const clearOpenedCards = () => {
-          openedCards = {
-              firstOpened: null,
-              secondOpened: null,
-          }
+          firstOpened = null;
         };
-
-        const openCard = (number) => {
-
-        }
 
         const createCard = (number) => {
-            let card = document.createElement('div');
-            card.classList.add('card');
-            card.classList.add('hiddenNumber')
-            card.textContent = number;
-            card.addEventListener('click', handleCardClick)
-            return card;
+            let h2 = document.createElement('h2');
+            h2.classList.add('cardText')
+            h2.textContent = number;
+            h2.classList.add('hiddenNumber')
+            h2.addEventListener('click', handleCardClick)
+            return h2;
         };
 
-        const handleCardClick = (e) => {
-            let el = e.target;
-            if (openedCards.firstOpened) {
-                if (openedCards.firstOpened.innerText === el.innerText) {
-                    el.classList.remove('hiddenNumber');
-                    clearOpenedCards();
-                    return;
-                } else {
-                    el.classList.remove('hiddenNumber');
-                    setTimeout(() => {
-                        el.classList.add('hiddenNumber');
-                        openedCards.firstOpened.classList.add('hiddenNumber')
+        const handleCardClick = async (e) => {
+            if (!isClickDisabled) {
+                let el = e.target;
+                clearTimeout();
+                console.log('firstOpenedZZZfirstOpened')
+                const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+                if (firstOpened) {
+                    if (firstOpened.innerText === el.innerText) {
+                        el.classList.remove('hiddenNumber');
                         clearOpenedCards();
-                    }, 500)
-                    return;
+                        return;
+                    } else {
+                        el.classList.remove('hiddenNumber');
+                        isClickDisabled = true;
+                        await sleep(500);
+                        el.classList.add('hiddenNumber');
+                        firstOpened.classList.add('hiddenNumber')
+                        clearOpenedCards();
+                        isClickDisabled = false;
+        
+                        return;
+                    }
                 }
+                firstOpened = el;
+                el.classList.remove('hiddenNumber');
             }
-            openedCards.firstOpened = el;
-            el.classList.remove('hiddenNumber');
         };
 
         const createRow = () => {
