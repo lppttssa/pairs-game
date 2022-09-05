@@ -30,11 +30,11 @@
             user-select: none;
 }
 
-.cardText:hover {
+.cardText:hover, .playAgainBtn:hover {
     opacity: 0.9;
 }
 
-.cardText:active {
+.cardText:active, .playAgainBtn:active {
     opacity: 1;
 }
 
@@ -42,3 +42,50 @@
     pointer-events: all;
     color: transparent;
 }
+
+.btn {
+    padding: 10px 15px;
+    background-color: plum;
+    opacity: 0.7;
+    border: none;
+    margin-top: 20px;
+    font-size: 15px;
+    font-family: "Roboto Light";
+    color: white;
+    cursor: pointer;
+}
+
+.form {
+    padding: 20px;
+    border: 1px silod plum;
+    background-color: plum;
+    opacity: 0.8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formDescription {
+    font-size: 20px;
+    font-family: "Roboto Light";
+    color: white;
+    margin-bottom: 20px;
+}
+
+.formInput {
+    padding: 5px;
+    font-size: 15px;
+    max-width: 50px;
+}
+
+.formHidden {
+    display: none;
+}
+
+.startGameBtn {
+    opacity: 1;
+    border: 1px solid white;
+    max-width: 150px;
+}
+
+
